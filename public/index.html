@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE-edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<meta name="author" content="me!" />
+		<link rel="icon" href="../../favicon.ico" />
+		
+		<title>Chat!</title>
+		
+		<link type="text/css" rel="stylesheet" href="bootstrap-3.3.0\dist\css\bootstrap-slate.css" />
+		<link type="text/css" rel="stylesheet" href="style.css" />
+		
+	</head>
+	
+	<body ng-app="chat">
+		<nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarController as navCtrl">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Project Name</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Topic 1</a></li>
+						<li class=""><a href="#">Topic 2</a></li>
+						<li class=""><a href="#">Topic 3</a></li>
+					</ul>
+               <form class="navbar-form navbar-right">
+                  <input type="text" class="form-control" placeholder="Search or Add Topic...">
+               </form>
+               <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#" ng-click="navCtrl.submitFeedback()">Submit a bug</a></li>
+               </ul>
+				</div>
+			</div>
+		</nav>
+		
+		<div id="background" class="container">
+         <div id="message-container" class="container">
+            <ul id="messages">
+            </ul>
+         </div>
+         
+         <footer>
+            <form name="chatForm" ng-controller="ChatController as chatCtrl" ng-submit="chatForm.$valid && chatCtrl.submit()" novalidate>
+               <div id="message-input" class="input-group container">
+                  <input id="m" type="text" class="form-control" 
+                  ng-model="chatCtrl.message" ng-minlength='1' ng-maxlength='255' required>
+                  <span class="input-group-btn">
+                     <button class="btn btn-default" type="submit" ng-disabled="chatForm.$invalid">Send to {{chatCtrl.numCurrentUsers}} users</button>
+                  </span>
+               </div>
+            </form>
+         </footer>
+		</div>
+		
+		<script src="jquery-1.11.1.js"></script>
+		<script src="angular.js"></script>
+		<script src="bootstrap-3.3.0\dist\js\bootstrap.js"></script>
+		<script src="socket.io.js" ></script>
+      <script src="chat.js"></script>
+	</body>
+</html>
